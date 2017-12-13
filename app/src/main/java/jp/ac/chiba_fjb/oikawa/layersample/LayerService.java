@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
+import android.os.Build;
 import android.os.IBinder;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +35,9 @@ public class LayerService extends Service {
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(
               WindowManager.LayoutParams.WRAP_CONTENT,
               WindowManager.LayoutParams.WRAP_CONTENT,
-              WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+              Build.VERSION.SDK_INT >= Build.VERSION_CODES.O?
+              WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY:
+                  WindowManager.LayoutParams.TYPE_PHONE,
                   WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED|
                   WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN|
                   WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
